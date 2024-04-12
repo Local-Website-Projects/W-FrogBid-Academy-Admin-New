@@ -1,0 +1,12 @@
+ErrorDocument 404 https://gneisslab.com//404.php
+
+RewriteEngine on
+
+RewriteRule ^Login login.php [NE,L]
+RewriteRule ^Logout logout.php [NE,L]
+RewriteRule ^Register register.php [NE,L]
+RewriteRule ^Insert insert.php [NE,L]
+RewriteRule ^Home index.php [NE,L]
+RewriteRule ^Employee employee.php [NE,L]
+RewriteRule ^Course course.php [NE,L]
+RewriteRule ^Batch batch.php [NE,L]
