@@ -3,7 +3,7 @@ class DBController {
     private $host = "localhost";
     private $user = "root";
     private $password = "";
-    private $database = "frogbid_academy";
+    private $database = "frogbid_acamedy";
     private $from_email='';
     private $notification_email='';
     private $conn;
