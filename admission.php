@@ -80,29 +80,29 @@ $db_handle = new DBController();
             <!--main body content-->
             <div class="card-body">
                 <div class="basic-form">
-                    <form>
+                    <form method="post" action="Insert">
                         <h3 class="mb-3">Student's Data</h3>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Student Name *</label>
                                 <input type="text" class="form-control" placeholder="Student Name" name="student_name"
-                                       required>
+                                       autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Class *</label>
-                                <input type="text" class="form-control" placeholder="Class" name="class" required>
+                                <input type="text" class="form-control" placeholder="Class" name="class" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Date of Birth *</label>
-                                <input type="date" class="form-control" name="dob" required>
+                                <input type="date" class="form-control" name="dob" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Age *</label>
-                                <input type="text" class="form-control" placeholder="Age" name="age" required>
+                                <input type="text" class="form-control" placeholder="Age" name="age" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Birth Place</label>
-                                <input type="text" class="form-control" placeholder="Birth Place" name="birth_place">
+                                <input type="text" class="form-control" placeholder="Birth Place" autocomplete="off" name="birth_place">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Gender *</label>
@@ -115,17 +115,17 @@ $db_handle = new DBController();
                             <div class="form-group col-md-6">
                                 <label>Birth Certificate No / NID *</label>
                                 <input type="text" class="form-control" placeholder="Birth Certificate No / NID"
-                                       name="nid" required>
+                                       name="nid" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Present Address *</label>
                                 <input type="text" class="form-control" placeholder="Present Address"
-                                       name="present_address" required>
+                                       name="present_address" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Permanent Address *</label>
                                 <input type="text" class="form-control" placeholder="Permanent Address"
-                                       name="permanent_address" required>
+                                       name="permanent_address" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Blood Group *</label>
@@ -142,41 +142,40 @@ $db_handle = new DBController();
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Interest / Hobby</label>
-                                <input type="text" class="form-control" placeholder="Interest / Hobby" name="interest"
-                                       required>
+                                <input type="text" class="form-control" placeholder="Interest / Hobby" name="hobby" autocomplete="off">
                             </div>
                         </div>
                         <h3 class="mt-5 mb-3">Parent's Data</h3>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>Father's Name *</label>
-                                <input type="text" class="form-control" placeholder="Father's Name" name="father_name"
+                                <input type="text" class="form-control" placeholder="Father's Name" name="father_name" autocomplete="off"
                                        required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Mother's Name *</label>
-                                <input type="text" class="form-control" placeholder="Mother's Name" name="mother_name"
+                                <input type="text" class="form-control" placeholder="Mother's Name" name="mother_name" autocomplete="off"
                                        required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Father's Contact No *</label>
                                 <input type="text" class="form-control" placeholder="Father's Contact No"
-                                       name="father_contact_no" required>
+                                       name="father_contact_no" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Mother's Contact No *</label>
                                 <input type="text" class="form-control" placeholder="Mother's Contact No"
-                                       name="mother_contact_no" required>
+                                       name="mother_contact_no" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Father's Occupation *</label>
                                 <input type="text" class="form-control" placeholder="Father's Occupation"
-                                       name="father_occupation" required>
+                                       name="father_occupation" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Mother's Occupation *</label>
                                 <input type="text" class="form-control" placeholder="Mother's Occupation"
-                                       name="mother_occupation" required>
+                                       name="mother_occupation" autocomplete="off" required>
                             </div>
                         </div>
                         <h3 class="mt-5 mb-3">Emergency Contact Person</h3>
@@ -184,25 +183,25 @@ $db_handle = new DBController();
                             <div class="form-group col-md-6">
                                 <label>Emergency Contact Person Name *</label>
                                 <input type="text" class="form-control" placeholder="Emergency Contact Person Name"
-                                       name="emergency_name" required>
+                                       name="emergency_name" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Relation With Student *</label>
                                 <input type="text" class="form-control" placeholder="Relation With Student"
-                                       name="emergency_relation" required>
+                                       name="emergency_relation" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Contact No *</label>
                                 <input type="text" class="form-control" placeholder="Contact No"
-                                       name="emergency_contact_no" required>
+                                       name="emergency_contact_no" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Address *</label>
                                 <input type="text" class="form-control" placeholder="Address"
-                                       name="emergency_address" required>
+                                       name="emergency_address" autocomplete="off" required>
                             </div>
                         </div>
-                        <button type="submit" name="register_student" class="btn btn-primary">Sign in</button>
+                        <button type="submit" name="register_student" class="btn btn-primary">Register Student</button>
                     </form>
                 </div>
             </div>

@@ -44,7 +44,7 @@ document.cookie = 'alert = 5;';
     }
 }
 
-if(isset($_POST['course_add'])){
+if (isset($_POST['course_add'])) {
     $course_name = $db_handle->checkValue($_POST['course_name']);
     $duration = $db_handle->checkValue($_POST['duration']);
     $age = $db_handle->checkValue($_POST['age']);
@@ -63,7 +63,7 @@ document.cookie = 'alert = 6;';
 document.cookie = 'alert = 4;';
                 window.location.href='Course';
 </script>";
-        } else{
+        } else {
             echo "<script>
 document.cookie = 'alert = 5;';
                 window.location.href='Course';
@@ -72,9 +72,9 @@ document.cookie = 'alert = 5;';
     }
 }
 
-if(isset($_POST['batch_add'])){
+if (isset($_POST['batch_add'])) {
     $batch_name = $db_handle->checkValue($_POST['batch_name']);
-    $course= $db_handle->checkValue($_POST['course']);
+    $course = $db_handle->checkValue($_POST['course']);
     $day_one = $db_handle->checkValue($_POST['day_one']);
     $time_one = $db_handle->checkValue($_POST['time_one']);
     $day_two = $db_handle->checkValue($_POST['day_two']);
@@ -82,7 +82,7 @@ if(isset($_POST['batch_add'])){
     $start_date = $db_handle->checkValue($_POST['start_date']);
 
 
-    if(empty($day_one) || empty($time_one) || empty($day_two) || empty($time_two) || empty($start_date) || empty($course) || empty($batch_name)){
+    if (empty($day_one) || empty($time_one) || empty($day_two) || empty($time_two) || empty($start_date) || empty($course) || empty($batch_name)) {
         echo "<script>
 document.cookie = 'alert = 6;';
                 window.location.href='Course';
@@ -94,7 +94,7 @@ document.cookie = 'alert = 6;';
 document.cookie = 'alert = 4;';
                 window.location.href='Batch';
 </script>";
-        } else{
+        } else {
             echo "<script>
 document.cookie = 'alert = 5;';
                 window.location.href='Batch';
@@ -102,3 +102,95 @@ document.cookie = 'alert = 5;';
         }
     }
 }
+
+
+if (isset($_POST['register_student'])) {
+    $student_name = $db_handle->checkValue($_POST['student_name']);
+    $class = $db_handle->checkValue($_POST['class']);
+    $dob = $db_handle->checkValue($_POST['dob']);
+    $age = $db_handle->checkValue($_POST['age']);
+    $birth_place = $db_handle->checkValue($_POST['birth_place']);
+    $gender = $db_handle->checkValue($_POST['gender']);
+    $nid = $db_handle->checkValue($_POST['nid']);
+    $present_address = $db_handle->checkValue($_POST['present_address']);
+    $permanent_address = $db_handle->checkValue($_POST['permanent_address']);
+    $blood_group = $db_handle->checkValue($_POST['blood_group']);
+    $hobby = $db_handle->checkValue($_POST['hobby']);
+
+    if (empty($student_name) || empty($class) || empty($dob) || empty($age) || empty($gender) || empty($nid) || empty($present_address) || empty($permanent_address) || empty($blood_group)) {
+        echo "<script>
+document.cookie = 'alert = 6;';
+                window.location.href='Admission';
+</script>";
+    } else {
+        function generateUniqueId() {
+            $group = chr(rand(65, 90));
+            $timestamp = time();
+            $randomPart = substr(md5($timestamp), 0, 6);
+            $r_id = $group . '-' . $randomPart;
+            return $r_id;
+        }
+        $uniqueId = generateUniqueId();
+        $checksum = 0;
+
+        while ($checksum == 0){
+            $check_unique_id = $db_handle->numRows("SELECT * FROM student WHERE unique_id = '$uniqueId'");
+            if($check_unique_id > 0){
+                $uniqueId = generateUniqueId();
+            } else {
+                $checksum = 1;
+            }
+        }
+
+        $register_student = $db_handle->insertQuery("INSERT INTO `student`(`student_name`, `class`, `dob`, `age`, `birth_place`, `gender`, `nid`, `present_address`, `permanent_address`, `blood_group`, `hobby`, `inserted_at`,`unique_id`) VALUES ('$student_name','$class','$dob','$age','$birth_place','$gender','$nid','$present_address','$permanent_address','$blood_group','$hobby','$inserted_at','$uniqueId')");
+        if ($register_student) {
+            $father_name = $db_handle->checkValue($_POST['father_name']);
+            $mother_name = $db_handle->checkValue($_POST['mother_name']);
+            $father_contact_no = $db_handle->checkValue($_POST['father_contact_no']);
+            $mother_contact_no = $db_handle->checkValue($_POST['mother_contact_no']);
+            $father_occupation = $db_handle->checkValue($_POST['father_occupation']);
+            $mother_occupation = $db_handle->checkValue($_POST['mother_occupation']);
+            if (empty($father_name) || empty($mother_contact_no) || empty($mother_occupation) || empty($father_occupation) || empty($mother_name) || empty($father_contact_no)) {
+                echo "<script>
+document.cookie = 'alert = 6;';
+                window.location.href='Admission';
+</script>";
+            } else {
+                $last_student_fetch = $db_handle->runQuery("select student_id from student order by student_id desc limit 1");
+                $last_student = $last_student_fetch[0]['student_id'];
+                $add_parent = $db_handle->insertQuery("INSERT INTO `parents`(`student_id`, `father_name`, `mother_name`, `father_occupation`, `mother_occupation`, `father_contact`, `mother_contact`, `inserted_at`) VALUES ('$last_student','$father_name','$mother_name','$father_occupation','$mother_occupation','$father_contact_no','$mother_contact_no','$inserted_at')");
+                if ($add_parent) {
+                    $emergency_name = $db_handle->checkValue($_POST['emergency_name']);
+                    $emergency_relation = $db_handle->checkValue($_POST['emergency_relation']);
+                    $emergency_contact_no = $db_handle->checkValue($_POST['emergency_contact_no']);
+                    $emergency_address = $db_handle->checkValue($_POST['emergency_address']);
+                    if (empty($emergency_name) || empty($emergency_contact_no) || empty($emergency_address) || empty($emergency_relation)) {
+                        echo "<script>
+document.cookie = 'alert = 6;';
+                window.location.href='Admission';
+</script>";
+                    } else {
+                        $insert_emergency_data = $db_handle->insertQuery("INSERT INTO `emergency_contact`(`student_id`, `contact_name`, `relation_student`, `emergency_contact`, `address`, `inserted_at`) VALUES ('$last_student','$emergency_name','$emergency_relation','$emergency_contact_no','$emergency_address','$inserted_at')");
+                        if($insert_emergency_data){
+                            echo "<script>
+document.cookie = 'alert = 4;';
+                window.location.href='Confirm-Admission?id=$uniqueId';
+</script>";
+                        }
+                    }
+                } else {
+                    echo "<script>
+document.cookie = 'alert = 5;';
+                window.location.href='Admission';
+</script>";
+                }
+            }
+        } else {
+            echo "<script>
+document.cookie = 'alert = 5;';
+                window.location.href='Admission';
+</script>";
+        }
+    }
+}
+
