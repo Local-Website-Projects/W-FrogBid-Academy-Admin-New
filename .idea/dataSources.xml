@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="frogbid_academy@localhost" uuid="d99a99d7-7bf3-4c77-852d-2ec8a68fefe2">
+    <data-source source="LOCAL" name="frogbid_acamedy@localhost" uuid="0a829598-7df5-41cf-bf90-7b44f2e57a41">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/frogbid_academy</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/frogbid_acamedy</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

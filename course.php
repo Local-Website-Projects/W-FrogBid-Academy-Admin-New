@@ -108,6 +108,9 @@ $db_handle = new DBController();
                                             <option value="Graphics">Graphics</option>
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control input-rounded" name="course_fee" placeholder="Course Fee" required>
+                                    </div>
                                     <button type="submit" name="course_add" class="btn btn-primary">Save changes</button>
                                 </form>
                             </div>
@@ -134,6 +137,7 @@ $db_handle = new DBController();
                                         <th>Program</th>
                                         <th>Age/Class</th>
                                         <th>Duration</th>
+                                        <th>Course Fee</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -148,6 +152,7 @@ $db_handle = new DBController();
                                             <td><?php echo $fetch_course[$i]['program'];?></td>
                                             <td><?php echo $fetch_course[$i]['age'];?></td>
                                             <td><?php echo $fetch_course[$i]['duration'];?></td>
+                                            <td><?php echo $fetch_course[$i]['course_fee'];?></td>
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>

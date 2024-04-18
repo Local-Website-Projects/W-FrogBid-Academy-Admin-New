@@ -49,14 +49,15 @@ if(isset($_POST['course_add'])){
     $duration = $db_handle->checkValue($_POST['duration']);
     $age = $db_handle->checkValue($_POST['age']);
     $program = $db_handle->checkValue($_POST['program']);
+    $course_fee = $db_handle->checkValue($_POST['course_fee']);
 
-    if (empty($course_name) || empty($duration) || empty($age) || empty($program)) {
+    if (empty($course_name) || empty($duration) || empty($age) || empty($program) || empty($course_fee)) {
         echo "<script>
 document.cookie = 'alert = 6;';
                 window.location.href='Course';
 </script>";
     } else {
-        $add_course = $db_handle->insertQuery("INSERT INTO `course`(`program`, `age`, `course_name`, `duration`, `inserted_at`) VALUES ('$program','$age','$course_name','$duration','$inserted_at')");
+        $add_course = $db_handle->insertQuery("INSERT INTO `course`(`program`, `age`, `course_name`, `duration`, `inserted_at`,`course_fee`) VALUES ('$program','$age','$course_name','$duration','$inserted_at','$course_fee')");
         if ($add_course) {
             echo "<script>
 document.cookie = 'alert = 4;';
@@ -66,6 +67,37 @@ document.cookie = 'alert = 4;';
             echo "<script>
 document.cookie = 'alert = 5;';
                 window.location.href='Course';
+</script>";
+        }
+    }
+}
+
+if(isset($_POST['batch_add'])){
+    $batch_name = $db_handle->checkValue($_POST['batch_name']);
+    $course= $db_handle->checkValue($_POST['course']);
+    $day_one = $db_handle->checkValue($_POST['day_one']);
+    $time_one = $db_handle->checkValue($_POST['time_one']);
+    $day_two = $db_handle->checkValue($_POST['day_two']);
+    $time_two = $db_handle->checkValue($_POST['time_two']);
+    $start_date = $db_handle->checkValue($_POST['start_date']);
+
+
+    if(empty($day_one) || empty($time_one) || empty($day_two) || empty($time_two) || empty($start_date) || empty($course) || empty($batch_name)){
+        echo "<script>
+document.cookie = 'alert = 6;';
+                window.location.href='Course';
+</script>";
+    } else {
+        $add_batch = $db_handle->insertQuery("INSERT INTO `batch` (`batch_name`, `day_one`, `time_one`, `day_two`, `time_two`, `start_date`, `inserted_at`,`course_id`) VALUES ('$batch_name','$day_one','$time_one','$day_two','$time_two','$start_date','$inserted_at','$course')");
+        if ($add_batch) {
+            echo "<script>
+document.cookie = 'alert = 4;';
+                window.location.href='Batch';
+</script>";
+        } else{
+            echo "<script>
+document.cookie = 'alert = 5;';
+                window.location.href='Batch';
 </script>";
         }
     }
