@@ -79,8 +79,8 @@
         </ul>
 
         <div class="copyright">
-            <p><strong>Your Company</strong> © 2021 All Rights Reserved</p>
-            <p>Made with <span class="heart"></span> Your Company</p>
+            <p><strong>FrogBid</strong> © 2024 All Rights Reserved</p>
+            <p>Made with <span class="heart"></span> FrogBid</p>
         </div>
     </div>
 </div>
