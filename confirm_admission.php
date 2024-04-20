@@ -91,17 +91,43 @@ if(isset($_GET['id'])){
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form>
+                                <form action="Insert" method="post">
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <lable>Student ID</lable>
-                                            <input type="text" class="form-control input-default" value="<?php echo $fetch_details[0]['unique_id'];?>"  readonly>
+                                            <input type="text" class="form-control input-default" name="unique_id" value="<?php echo $fetch_details[0]['unique_id'];?>"  readonly>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <lable>Student Name</lable>
                                             <input type="text" class="form-control input-default" value="<?php echo $fetch_details[0]['student_name'];?>"  readonly>
                                         </div>
-
+                                        <div class="form-group col-md-6">
+                                            <label>Batch *</label>
+                                            <select class="form-control default-select form-control-lg" name="batch_id" id="batchSelect" required>
+                                                <option>Select Batch</option>
+                                                <?php
+                                                $fetch_batch = $db_handle->runQuery("select * from batch where status != '2'");
+                                                for ($i=0; $i < count($fetch_batch); $i++) {
+                                                    ?>
+                                                    <option value="<?php echo $fetch_batch[$i]['batch_id'];?>"><?php echo $fetch_batch[$i]['batch_name'];?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Course Name</label>
+                                            <input type="text" class="form-control input-default" id="courseName">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Course Duration</label>
+                                            <input type="text" class="form-control input-default" id="courseDuration">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Course Fee</label>
+                                            <input type="text" class="form-control input-default" id="courseFee">
+                                        </div>
+                                        <button type="submit" name="confirm_admission" class="btn btn-primary">Confirm Admission</button>
                                     </div>
                                 </form>
                             </div>
@@ -142,6 +168,33 @@ if(isset($_GET['id'])){
     Scripts
 ***********************************-->
 <?php require_once('include/js.php'); ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('batchSelect').addEventListener('change', function() {
+            var batchId = this.value;
+            // AJAX call to fetch course details
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText);
+                        var courseDetails = JSON.parse(xhr.responseText);
+                        console.log(courseDetails); // Log the courseDetails object
+
+                        // Set values of input fields
+                        document.getElementById('courseName').value = courseDetails[0].course_name;
+                        document.getElementById('courseDuration').value = courseDetails[0].duration;
+                        document.getElementById('courseFee').value = courseDetails[0].course_fee;
+                    } else {
+                        console.log('Error: ' + xhr.status);
+                    }
+                }
+            };
+            xhr.open('GET', 'fetch_course_details.php?batch_id=' + batchId, true);
+            xhr.send();
+        });
+    });
+</script>
 </body>
 
 </html>

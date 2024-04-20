@@ -194,3 +194,28 @@ document.cookie = 'alert = 5;';
     }
 }
 
+
+if (isset($_POST['confirm_admission'])){
+    $unique_id = $db_handle->checkValue($_POST['unique_id']);
+    $batch_id = $db_handle->checkValue($_POST['batch_id']);
+
+    $fetch_student_id = $db_handle->runQuery("select student_id from student where unique_id='$unique_id'");
+    $student_id = $fetch_student_id[0]['student_id'];
+    if(empty($batch_id)) {
+        echo "<script>
+document.cookie = 'alert = 6;';
+                window.location.href='Admission';
+</script>";
+    } else {
+        $insert_admission = $db_handle->insertQuery("INSERT INTO `admission`(`student_id`, `unique_id`, `batch_id`, `inserted_at`) VALUES ('$student_id','$unique_id','$batch_id','$inserted_at')");
+        if($insert_admission){
+            $fetch_admission = $db_handle->runQuery("select * from admission order by admission_id desc limit 1");
+            $admission_id = $fetch_admission[0]['admission_id'];
+            echo "<script>
+document.cookie = 'alert = 4;';
+                window.location.href='Registration-Form?id=$admission_id';
+</script>";
+        }
+    }
+
+}
