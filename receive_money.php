@@ -75,7 +75,7 @@ $db_handle = new DBController();
         <!-- row -->
         <div class="container-fluid">
             <div class="form-head mb-4">
-                <h2 class="text-black font-w600 mb-0">Receive Money</h2>
+                <h2 class="text-black font-w600 mb-0">Receive Payment</h2>
             </div>
             <!--main body content-->
 

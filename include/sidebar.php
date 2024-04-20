@@ -27,7 +27,7 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="Admission">Admission</a></li>
-                    <li><a href="uc-nestable.html">Student List</a></li>
+                    <li><a href="Student-List">Student List</a></li>
                     <li><a href="Receive-Money">Receive Payment</a></li>
                 </ul>
             </li>

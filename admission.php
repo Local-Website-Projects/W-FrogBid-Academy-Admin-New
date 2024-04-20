@@ -91,6 +91,9 @@ $db_handle = new DBController();
                             <div class="form-group col-md-6">
                                 <label>Class *</label>
                                 <input type="text" class="form-control" placeholder="Class" name="class" autocomplete="off" required>
+                            </div><div class="form-group col-md-6">
+                                <label>Institution *</label>
+                                <input type="text" class="form-control" placeholder="Institution" name="institution" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Date of Birth *</label>

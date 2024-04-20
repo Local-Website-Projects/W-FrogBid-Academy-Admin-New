@@ -116,8 +116,9 @@ if (isset($_POST['register_student'])) {
     $permanent_address = $db_handle->checkValue($_POST['permanent_address']);
     $blood_group = $db_handle->checkValue($_POST['blood_group']);
     $hobby = $db_handle->checkValue($_POST['hobby']);
+    $institution = $db_handle->checkValue($_POST['institution']);
 
-    if (empty($student_name) || empty($class) || empty($dob) || empty($age) || empty($gender) || empty($nid) || empty($present_address) || empty($permanent_address) || empty($blood_group)) {
+    if (empty($student_name) || empty($class) || empty($dob) || empty($age) || empty($gender) || empty($nid) || empty($present_address) || empty($permanent_address) || empty($blood_group) || empty($institution)) {
         echo "<script>
 document.cookie = 'alert = 6;';
                 window.location.href='Admission';
@@ -142,7 +143,7 @@ document.cookie = 'alert = 6;';
             }
         }
 
-        $register_student = $db_handle->insertQuery("INSERT INTO `student`(`student_name`, `class`, `dob`, `age`, `birth_place`, `gender`, `nid`, `present_address`, `permanent_address`, `blood_group`, `hobby`, `inserted_at`,`unique_id`) VALUES ('$student_name','$class','$dob','$age','$birth_place','$gender','$nid','$present_address','$permanent_address','$blood_group','$hobby','$inserted_at','$uniqueId')");
+        $register_student = $db_handle->insertQuery("INSERT INTO `student`(`student_name`, `class`, `dob`, `age`, `birth_place`, `gender`, `nid`, `present_address`, `permanent_address`, `blood_group`, `hobby`, `inserted_at`,`unique_id`,`institution`) VALUES ('$student_name','$class','$dob','$age','$birth_place','$gender','$nid','$present_address','$permanent_address','$blood_group','$hobby','$inserted_at','$uniqueId','$institution')");
         if ($register_student) {
             $father_name = $db_handle->checkValue($_POST['father_name']);
             $mother_name = $db_handle->checkValue($_POST['mother_name']);
@@ -201,13 +202,14 @@ if (isset($_POST['confirm_admission'])){
 
     $fetch_student_id = $db_handle->runQuery("select student_id from student where unique_id='$unique_id'");
     $student_id = $fetch_student_id[0]['student_id'];
+    $employee_id = $_SESSION['user'];
     if(empty($batch_id)) {
         echo "<script>
 document.cookie = 'alert = 6;';
                 window.location.href='Admission';
 </script>";
     } else {
-        $insert_admission = $db_handle->insertQuery("INSERT INTO `admission`(`student_id`, `unique_id`, `batch_id`, `inserted_at`) VALUES ('$student_id','$unique_id','$batch_id','$inserted_at')");
+        $insert_admission = $db_handle->insertQuery("INSERT INTO `admission`(`student_id`, `unique_id`, `batch_id`, `inserted_at`,`employee_id`) VALUES ('$student_id','$unique_id','$batch_id','$inserted_at','$employee_id')");
         if($insert_admission){
             $fetch_admission = $db_handle->runQuery("select * from admission order by admission_id desc limit 1");
             $admission_id = $fetch_admission[0]['admission_id'];
