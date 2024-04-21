@@ -28,7 +28,6 @@
                 <ul aria-expanded="false">
                     <li><a href="Admission">Admission</a></li>
                     <li><a href="Student-List">Student List</a></li>
-                    <li><a href="Receive-Money">Receive Payment</a></li>
                 </ul>
             </li>
             <li><a href="widget-basic.html" class="ai-icon" aria-expanded="false">

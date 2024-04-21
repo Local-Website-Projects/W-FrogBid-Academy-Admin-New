@@ -4,6 +4,8 @@ require_once('config/dbConfig.php');
 $db_handle = new DBController();
 date_default_timezone_set("Asia/Dhaka");
 $inserted_at = date("Y-m-d H:i:s");
+$today = date("Y-m-d");
+$user = $_SESSION['user'];
 
 
 if (isset($_POST['register'])) {
@@ -219,5 +221,40 @@ document.cookie = 'alert = 4;';
 </script>";
         }
     }
+
+}
+
+
+if(isset($_POST['receive_money'])){
+    $unique_id = $db_handle->checkValue($_POST['unique_id']);
+    $batch_id = $db_handle->checkValue($_POST['batch_id']);
+    $amount = $db_handle->checkValue($_POST['amount']);
+    $note = $db_handle->checkValue($_POST['note']);
+    $payment_method = $db_handle->checkValue($_POST['payment_method']);
+    $student_id = $db_handle->checkValue($_POST['student_id']);
+
+    if(empty($batch_id) || empty($amount) || empty($unique_id) || empty($payment_method)){
+        echo "<script>
+document.cookie = 'alert = 6;';
+                window.location.href='Admission';
+</script>";
+    } else {
+        $receive_money = $db_handle->insertQuery("INSERT INTO `receive_money`(`student_id`, `student_unique_id`, `batch_id`, `paid_amount`, `purpose`, `payment_method`, `receiver`, `date`, `inserted_at`) VALUES ('$student_id','$unique_id','$batch_id','$amount','$note','$payment_method','$user','$today','$inserted_at')");
+        $last = $db_handle->runQuery("select * from receive_money order by money_id desc limit 1");
+        $l = $last[0]['money_id'];
+        if($receive_money){
+            echo "<script>
+document.cookie = 'alert = 4;';
+                window.location.href='Money-Slip.php?id=$l';
+</script>";
+        } else {
+            echo "<script>
+document.cookie = 'alert = 5;';
+                window.location.href='Student-List';
+</script>";
+        }
+    }
+
+
 
 }

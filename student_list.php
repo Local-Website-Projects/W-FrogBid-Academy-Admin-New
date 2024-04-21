@@ -105,7 +105,10 @@ $db_handle = new DBController();
                                     ?>
                                     <tr>
                                         <td>
-                                            <a href="Registration-Form?id=<?php echo $fetch_student[$i]['admission_id'];?>" target="_blank" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-print"></i></a>
+                                            <div class="d-flex">
+                                                <a href="Registration-Form?id=<?php echo $fetch_student[$i]['admission_id'];?>" target="_blank" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-print"></i></a>
+                                                <a href="Receive-Money?student_id=<?php echo $fetch_student[$i]['unique_id'];?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-repeat"></i></a>
+                                            </div>
                                         </td>
                                         <td><?php echo $fetch_student[0]['unique_id'];?></td>
                                         <td><?php echo $fetch_student[0]['student_name'];?></td>

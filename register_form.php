@@ -71,7 +71,7 @@ if(isset($_GET['id'])){
             <header style="height: 250px;margin-top: 20px;">
                 <div class="row">
                     <div class="col-4">
-                        <img src="images/logo_color.png" style="height: 200px; width: auto;">
+                        <img src="images/logo_color.png" style="height: 150px; width: auto;">
                     </div>
                     <div class="col-4 text-center my-auto">
                         <h4>Student Registration Data</h4>
