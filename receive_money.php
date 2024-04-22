@@ -198,6 +198,40 @@ if (isset($_GET['student_id'])) {
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Student Payment History</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-responsive-md">
+                                    <thead>
+                                    <tr>
+                                        <th class="width80"><strong>#</strong></th>
+                                        <th><strong>Date</strong></th>
+                                        <th><strong>Amount</strong></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $fetch_data = $db_handle->runQuery("select * from receive_money where student_unique_id = '$student_id'");
+                                    for ($k = 0; $k < count($fetch_data); $k++) {
+                                        ?>
+                                        <tr>
+                                            <td><strong><?php echo $k + 1; ?></strong></td>
+                                            <td><?php echo $fetch_data[$k]['date']; ?></td>
+                                            <td><?php echo $fetch_data[$k]['paid_amount']; ?></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

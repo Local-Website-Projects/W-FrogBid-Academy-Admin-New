@@ -4,7 +4,7 @@ require_once('config/dbConfig.php');
 $db_handle = new DBController();
 date_default_timezone_set("Asia/Dhaka");
 $inserted_at = date("Y-m-d H:i:s");
-$today = date("Y-m-d");
+$today = date("d M, Y");
 $user = $_SESSION['user'];
 
 
@@ -254,7 +254,31 @@ document.cookie = 'alert = 5;';
 </script>";
         }
     }
+}
 
+if(isset($_POST['add_expense'])){
+    $expense_amount = $db_handle->checkValue($_POST['expense_amount']);
+    $note = $db_handle->checkValue($_POST['note']);
+    $date = $db_handle->checkValue($_POST['date']);
+    $employee_id = $_SESSION['user'];
 
-
+    if(empty($expense_amount) || empty($note) || empty($date)){
+        echo "<script>
+document.cookie = 'alert = 6;';
+                window.location.href='Expense';
+</script>";
+    } else{
+        $insert_expense = $db_handle->insertQuery("INSERT INTO `expense`(`note`, `amount`, `date`, `operator`, `inserted_at`) VALUES ('$note','$expense_amount','$date','$employee_id','$inserted_at')");
+        if($insert_expense){
+            echo "<script>
+document.cookie = 'alert = 4;';
+                window.location.href='Expense';
+</script>";
+        } else {
+            echo "<script>
+document.cookie = 'alert = 5;';
+                window.location.href='Expense';
+</script>";
+        }
+    }
 }
