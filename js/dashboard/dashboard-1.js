@@ -45,7 +45,7 @@
 			},
 			colors:['#D2D2D2', '#EBEBEB'],
 			dataLabels: {
-			  enabled: false,
+			  enabled: true,
 			},
 			markers: {
 		shape: "circle",

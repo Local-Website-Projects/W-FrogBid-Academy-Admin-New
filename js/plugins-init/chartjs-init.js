@@ -65,11 +65,11 @@
 				type: 'bar',
 				data: {
 					defaultFontFamily: 'Poppins',
-					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug","Sep","Oct","Nov","Dec"],
 					datasets: [
 						{
 							label: "My First dataset",
-							data: [65, 59, 80, 81, 56, 55, 40],
+							data: [10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
 							borderColor: barChart_2gradientStroke,
 							borderWidth: "0",
 							backgroundColor: barChart_2gradientStroke, 
