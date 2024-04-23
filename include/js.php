@@ -1,5 +1,7 @@
 <?php
 $data = [];
+$batch = [];
+$student = [];
 for ($i = 1; $i <= 12; $i++){
     if($i<9){
         $month = '0'.$i;
@@ -7,8 +9,20 @@ for ($i = 1; $i <= 12; $i++){
     $fetch_student = $db_handle->numRows("select * from admission where MONTH(inserted_at) = '$month' and YEAR(inserted_at) = YEAR(CURDATE())");
     array_push($data, $fetch_student);
 }
+$json_values = json_encode($data);
 
-echo $json_values = json_encode($data);
+$query = $db_handle->runQuery("SELECT batch_id, batch_name FROM `batch` where status != 2");
+if($query){
+    for ($a=0; $a<count($query); $a++){
+        $stu = $db_handle->numRows("select * from admission where batch_id = '".$query[$a]['batch_id']."'");
+        array_push($batch, $query[$a]['batch_name']);
+        array_push($student, $stu);
+    }
+}
+$json_batch = json_encode($batch);
+$json_students = json_encode($student);
+
+
 ?>
 
 <!-- Required vendors -->
@@ -80,13 +94,6 @@ echo $json_values = json_encode($data);
     });
 
     (function($) {
-        /* "use strict" */
-
-
-        /* function draw() {
-
-        } */
-
         var dzSparkLine = function(){
             let draw = Chart.controllers.line.__super__.draw; //draw shadow
 
@@ -138,6 +145,53 @@ echo $json_values = json_encode($data);
                 }
             }
 
+            var barChart3 = function(){
+                if(jQuery('#barChart_3').length > 0 ){
+
+                    //gradient bar chart
+                    const barChart_3 = document.getElementById("barChart_3").getContext('2d');
+                    //generate gradient
+                    const barChart_3gradientStroke = barChart_3.createLinearGradient(0, 0, 0, 250);
+                    barChart_3gradientStroke.addColorStop(0, "rgba(30, 170, 231, 1)");
+                    barChart_3gradientStroke.addColorStop(1, "rgba(30, 170, 231, 0.5)");
+
+                    barChart_3.height = 100;
+
+                    new Chart(barChart_3, {
+                        type: 'bar',
+                        data: {
+                            defaultFontFamily: 'Poppins',
+                            labels: <?php echo $json_batch;?>,
+                            datasets: [
+                                {
+                                    label: "No of Students",
+                                    data: <?php echo $json_students; ?>,
+                                    borderColor: barChart_3gradientStroke,
+                                    borderWidth: "0",
+                                    backgroundColor: barChart_3gradientStroke,
+                                    hoverBackgroundColor: barChart_3gradientStroke
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: false,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }],
+                                xAxes: [{
+                                    // Change here
+                                    barPercentage: 0.5
+                                }]
+                            }
+                        }
+                    });
+                }
+            }
+
+
 
 
             /* Function ============ */
@@ -148,10 +202,12 @@ echo $json_values = json_encode($data);
 
                 load:function(){
                     barChart2();
+                    barChart3();
                 },
 
                 resize:function(){
                     barChart2();
+                    barChart3();
                 }
             }
 

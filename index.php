@@ -176,13 +176,13 @@ $db_handle = new DBController();
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="col-xl-6 col-lg-6 col-sm-12">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h4 class="card-title">Art & Programming Student</h4>
+                                                    <h4 class="card-title">Number of Students Per Batch</h4>
                                                 </div>
                                                 <div class="card-body">
-                                                    <canvas id="pie_chart"></canvas>
+                                                    <canvas id="barChart_3"></canvas>
                                                 </div>
                                             </div>
                                         </div>

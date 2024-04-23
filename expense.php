@@ -126,18 +126,20 @@ $db_handle = new DBController();
                                     <tr>
                                         <th>Sl No</th>
                                         <th>Note</th>
+                                        <th>Date</th>
                                         <th>Amount</th>
-                                        <th>Person</th>
+                                        <th>Added By</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $fetch_expense = $db_handle->runQuery("SELECT * FROM expense,employee where expense.operator = employee.e_id order by expense_id desc");
+                                    $fetch_expense = $db_handle->runQuery("SELECT * FROM expense,employee where expense.operator = employee.e_id order by date desc");
                                     for ($i=0; $i < count($fetch_expense); $i++ ){
                                         ?>
                                         <tr>
                                             <td><?php echo$i+1;?></td>
                                             <td><?php echo $fetch_expense[$i]['note'];?></td>
+                                            <td><?php echo date('d F, y', strtotime($fetch_expense[$i]['date'])); ?></td>
                                             <td><?php echo $fetch_expense[$i]['amount'];?></td>
                                             <td><?php echo $fetch_expense[$i]['full_name'];?></td>
                                         </tr>
