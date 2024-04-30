@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
+if (!isset($_SESSION['user'])) {
     echo "
     <script>window.location.href = 'Login';</script>
     ";
@@ -16,6 +16,14 @@ $db_handle = new DBController();
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Dashboard - FrogBid Academy</title>
     <?php require_once('include/css.php'); ?>
+    <style>
+        table, th, tr, td {
+            border: 1px solid #eee;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+    </style>
 
 </head>
 <body>
@@ -89,8 +97,8 @@ $db_handle = new DBController();
                                         $daily_income = $db_handle->runQuery("select SUM(paid_amount) as d_income from receive_money WHERE DATE(date) = CURDATE()");
                                         ?>
                                         <span class="fs-24 text-black font-w600"><?php
-                                            if($daily_income[0]['d_income']!= null){
-                                                echo $daily_income[0]['d_income'].' BDT';
+                                            if ($daily_income[0]['d_income'] != null) {
+                                                echo $daily_income[0]['d_income'] . ' BDT';
                                             } else {
                                                 echo "00 BDT";
                                             }
@@ -108,8 +116,8 @@ $db_handle = new DBController();
                                         $monthly_income = $db_handle->runQuery("SELECT SUM(paid_amount) AS m_income FROM receive_money WHERE MONTH(date) = MONTH(CURDATE())");
                                         ?>
                                         <span class="fs-24 text-black font-w600"><?php
-                                            if($monthly_income[0]['m_income']!= null){
-                                                echo $monthly_income[0]['m_income'].' BDT';
+                                            if ($monthly_income[0]['m_income'] != null) {
+                                                echo $monthly_income[0]['m_income'] . ' BDT';
                                             } else {
                                                 echo "00 BDT";
                                             }
@@ -127,8 +135,8 @@ $db_handle = new DBController();
                                         $daily_expense = $db_handle->runQuery("SELECT SUM(amount) AS d_expense FROM expense WHERE date(date) = CURDATE()");
                                         ?>
                                         <span class="fs-24 text-black font-w600"><?php
-                                            if($daily_expense[0]['d_expense']!= null){
-                                                echo $daily_expense[0]['d_expense'].' BDT';
+                                            if ($daily_expense[0]['d_expense'] != null) {
+                                                echo $daily_expense[0]['d_expense'] . ' BDT';
                                             } else {
                                                 echo "00 BDT";
                                             }
@@ -146,8 +154,8 @@ $db_handle = new DBController();
                                         $monthly_expense = $db_handle->runQuery("SELECT SUM(amount) AS m_expense FROM expense WHERE MONTH(date) = MONTH(CURDATE())");
                                         ?>
                                         <span class="fs-24 text-black font-w600"><?php
-                                            if($monthly_expense[0]['m_expense']!= null){
-                                                echo $monthly_expense[0]['m_expense'].' BDT';
+                                            if ($monthly_expense[0]['m_expense'] != null) {
+                                                echo $monthly_expense[0]['m_expense'] . ' BDT';
                                             } else {
                                                 echo "00 BDT";
                                             }
@@ -187,6 +195,81 @@ $db_handle = new DBController();
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+
+                                </div>
+                                <div class="card-body">
+                                    <table style="width: 100%;">
+                                        <thead>
+                                        <th>Time/Day</th>
+                                        <th>Sat</th>
+                                        <th>Sun</th>
+                                        <th>Mon</th>
+                                        <th>Tues</th>
+                                        <th>Wed</th>
+                                        <th>Thus</th>
+                                        <th>Fri</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>9:00 AM</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Test Batch <br> Test Batch</td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11:00 AM</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                        </tr>
+                                        <tr>
+                                            <td>12:30 PM</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                        </tr>
+                                        <tr>
+                                            <td>03:15 PM</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                        </tr>
+                                        <tr>
+                                            <td>05:00 PM</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                            <td></td>
+                                            <td>Test Batch</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-ErrorDocument 404 https://gneisslab.com//404.php
+ErrorDocument 404 404.php
 
 RewriteEngine on
 
@@ -17,3 +17,4 @@ RewriteRule ^Registration-Form register_form.php [NE,L]
 RewriteRule ^Student-List student_list.php [NE,L]
 RewriteRule ^Money-Slip money_slip.php [NE,L]
 RewriteRule ^Expense expense.php [NE,L]
+RewriteRule ^Profile profile.php [NE,L]

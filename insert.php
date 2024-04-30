@@ -282,3 +282,30 @@ document.cookie = 'alert = 5;';
         }
     }
 }
+
+if(isset($_POST['update_password'])){
+    $old_pass = $db_handle->checkValue($_POST['old_pass']);
+    $new_pass = $db_handle->checkValue($_POST['new_pass']);
+
+    $fetch_user = $db_handle->runQuery("select * from employee where e_id = '$user'");
+    if (password_verify($old_pass, $fetch_user[0]['password'])){
+        $hash_pass = password_hash($new_pass, PASSWORD_DEFAULT);
+        $update_pass = $db_handle->insertQuery("UPDATE `employee` SET `password`='$hash_pass' WHERE `e_id` = '$user'");
+        if($update_pass){
+            echo "<script>
+document.cookie = 'alert = 4;';
+                window.location.href='Profile';
+</script>";
+        } else {
+            echo "<script>
+document.cookie = 'alert = 5;';
+                window.location.href='Profile';
+</script>";
+        }
+    } else {
+        echo "<script>
+document.cookie = 'alert = 5;';
+                window.location.href='Profile';
+</script>";
+    }
+}
