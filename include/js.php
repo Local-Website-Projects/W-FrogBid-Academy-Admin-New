@@ -21,8 +21,6 @@ if($query){
 }
 $json_batch = json_encode($batch);
 $json_students = json_encode($student);
-
-
 ?>
 
 <!-- Required vendors -->
@@ -49,6 +47,7 @@ $json_students = json_encode($student);
 <script src="js/plugins-init/toastr-init.js"></script>
 <!-- Datatable -->
 <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+
 <script src="js/plugins-init/datatables.init.js"></script>
 
 
