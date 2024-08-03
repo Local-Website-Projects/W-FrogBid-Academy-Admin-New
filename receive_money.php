@@ -209,6 +209,7 @@ if (isset($_GET['student_id'])) {
                                     <thead>
                                     <tr>
                                         <th class="width80"><strong>#</strong></th>
+                                        <th><strong>Note</strong></th>
                                         <th><strong>Date</strong></th>
                                         <th><strong>Amount</strong></th>
                                     </tr>
@@ -220,6 +221,7 @@ if (isset($_GET['student_id'])) {
                                         ?>
                                         <tr>
                                             <td><strong><?php echo $k + 1; ?></strong></td>
+                                            <td><?php echo $fetch_data[$k]['purpose']; ?></td>
                                             <td><?php echo $fetch_data[$k]['date']; ?></td>
                                             <td><?php echo $fetch_data[$k]['paid_amount']; ?></td>
                                         </tr>
