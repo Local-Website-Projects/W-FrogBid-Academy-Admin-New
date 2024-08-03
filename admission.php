@@ -203,6 +203,11 @@ $db_handle = new DBController();
                                 <input type="text" class="form-control" placeholder="Address"
                                        name="emergency_address" autocomplete="off" required>
                             </div>
+                            <div class="form-group col-md-6">
+                                <label>ID Card No</label>
+                                <input type="text" class="form-control" placeholder="ID Card No"
+                                       name="id_card" autocomplete="off" required>
+                            </div>
                         </div>
                         <button type="submit" name="register_student" class="btn btn-primary">Register Student</button>
                     </form>

@@ -1,3 +1,17 @@
+<?php
+session_start();
+if (!isset($_GET['id'])) {
+    echo "
+    <script>window.location.href = 'Login';</script>
+    ";
+}
+require_once('config/dbConfig.php');
+$db_handle = new DBController();
+$id = $_GET['id'];
+$fetch_data = $db_handle->runQuery("select father_name, mother_name, father_contact, mother_contact, student_name from student,parents where student.student_id = parents.student_id and student.id_card_no='$id'");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,15 +87,14 @@
             <img src="images/id/profile.jpg" alt="image">
         </div>
         <div class="student-info">
-            <h3>Student Name</h3>
-            <h4>Art/Coding</h4>
+            <h3><?php echo $fetch_data[0]['student_name'];?></h3>
+            <h4>Art</h4>
         </div>
         <div class="details">
-            <p>Father's Name : </p>
-            <p>Mother's Name :</p>
-            <p>Contact Number :</p>
-            <p>Contact Number :</p>
-            <p>Blood Group :</p>
+            <p>Father's Name : <?php echo $fetch_data[0]['father_name'];?></p>
+            <p>Mother's Name : <?php echo $fetch_data[0]['mother_name'];?></p>
+            <p>Contact Number : <?php echo $fetch_data[0]['father_contact'];?></p>
+            <p>Contact Number : <?php echo $fetch_data[0]['mother_contact'];?></p>
         </div>
         <div class="student-info">
             <p>www.frogbidacademy.com</p>
