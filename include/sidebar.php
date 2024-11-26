@@ -28,6 +28,7 @@
                 <ul aria-expanded="false">
                     <li><a href="Admission">Admission</a></li>
                     <li><a href="Student-List">Student List</a></li>
+                    <li><a href="Free-Registration">Free Class Registration</a></li>
                 </ul>
             </li>
             <li><a href="Expense" class="ai-icon" aria-expanded="false">

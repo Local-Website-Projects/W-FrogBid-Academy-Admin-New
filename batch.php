@@ -172,8 +172,18 @@ $db_handle = new DBController();
                                         <tr>
                                             <td><?php echo $fetch_batch[$i]['batch_name']; ?></td>
                                             <td><?php echo $fetch_batch[$i]['course_name']; ?></td>
-                                            <td><?php echo date("l g:i A", strtotime($fetch_batch[$i]['day_one'].' '.$fetch_batch[$i]['time_one'])).', '.
-                                                    date("l g:i A", strtotime($fetch_batch[$i]['day_two'].' '.$fetch_batch[$i]['time_two']));?></td>
+                                            <?php
+                                            if ($fetch_batch[$i]['day_two'] != NULL) {
+                                                ?>
+                                                <td><?php echo date("l g:i A", strtotime($fetch_batch[$i]['day_one'].' '.$fetch_batch[$i]['time_one'])).', '.
+                                                        date("l g:i A", strtotime($fetch_batch[$i]['day_two'].' '.$fetch_batch[$i]['time_two']));?></td>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <td><?php echo date("l g:i A", strtotime($fetch_batch[$i]['day_one'].' '.$fetch_batch[$i]['time_one']));?></td>
+                                                <?php
+                                            }
+                                            ?>
                                             <td><?php echo date("d F, y", strtotime($fetch_batch[$i]['start_date'])); ?></td>
                                             <td><?php
                                                 $student = $db_handle->numRows("select student_id from admission where batch_id = '".$fetch_batch[$i]['batch_id']."'");

@@ -106,6 +106,9 @@ $db_handle = new DBController();
                                             <option value="Art">Art</option>
                                             <option value="Programming">Programming</option>
                                             <option value="Graphics">Graphics</option>
+                                            <option value="Guitar">Guitar</option>
+                                            <option value="KeyBoard">KeyBoard</option>
+                                            <option value="Ukulele">Ukulele</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

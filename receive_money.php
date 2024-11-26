@@ -217,14 +217,21 @@ if (isset($_GET['student_id'])) {
                                     <tbody>
                                     <?php
                                     $fetch_data = $db_handle->runQuery("select * from receive_money where student_unique_id = '$student_id'");
-                                    for ($k = 0; $k < count($fetch_data); $k++) {
+                                    $fetch_data_no = $db_handle->numRows("select * from receive_money where student_unique_id = '$student_id'");
+                                    for ($k = 0; $k < $fetch_data_no; $k++) {
+                                        if($fetch_data_no > 0){
+                                            ?>
+                                            <tr>
+                                                <td><strong><?php echo $k + 1; ?></strong></td>
+                                                <td><?php echo $fetch_data[$k]['purpose']; ?></td>
+                                                <td><?php echo $fetch_data[$k]['date']; ?></td>
+                                                <td><?php echo $fetch_data[$k]['paid_amount']; ?></td>
+                                            </tr>
+                                            <?php
+                                        } else {
+                                            echo 'No data found';
+                                        }
                                         ?>
-                                        <tr>
-                                            <td><strong><?php echo $k + 1; ?></strong></td>
-                                            <td><?php echo $fetch_data[$k]['purpose']; ?></td>
-                                            <td><?php echo $fetch_data[$k]['date']; ?></td>
-                                            <td><?php echo $fetch_data[$k]['paid_amount']; ?></td>
-                                        </tr>
                                         <?php
                                     }
                                     ?>

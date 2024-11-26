@@ -2,9 +2,6 @@ ErrorDocument 404 404.php
 
 RewriteEngine on
 
-
-
-
 RewriteRule ^ID-Verify id_verify.php [NE,L]
 RewriteRule ^Login login.php [NE,L]
 RewriteRule ^Logout logout.php [NE,L]
@@ -22,3 +19,4 @@ RewriteRule ^Student-List student_list.php [NE,L]
 RewriteRule ^Money-Slip money_slip.php [NE,L]
 RewriteRule ^Expense expense.php [NE,L]
 RewriteRule ^Profile profile.php [NE,L]
+RewriteRule ^Free-Registration freeRegistration.php [NE,L]

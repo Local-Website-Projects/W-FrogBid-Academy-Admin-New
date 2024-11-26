@@ -84,7 +84,7 @@ if (isset($_POST['batch_add'])) {
     $start_date = $db_handle->checkValue($_POST['start_date']);
 
 
-    if (empty($day_one) || empty($time_one) || empty($day_two) || empty($time_two) || empty($start_date) || empty($course) || empty($batch_name)) {
+    if (empty($day_one) || empty($time_one) || empty($start_date) || empty($course) || empty($batch_name)) {
         echo "<script>
 document.cookie = 'alert = 6;';
                 window.location.href='Course';
@@ -150,7 +150,7 @@ if (isset($_POST['register_student'])) {
         $mother_contact_no = $db_handle->checkValue($_POST['mother_contact_no']);
         $father_occupation = $db_handle->checkValue($_POST['father_occupation']);
         $mother_occupation = $db_handle->checkValue($_POST['mother_occupation']);
-        if (empty($father_name) || empty($mother_contact_no) || empty($mother_occupation) || empty($father_occupation) || empty($mother_name) || empty($father_contact_no)) {
+        if (empty($father_name) || empty($mother_contact_no) || empty($mother_name) || empty($father_contact_no)) {
             echo "<script>
 document.cookie = 'alert = 6;';
                 window.location.href='Admission';
@@ -164,7 +164,7 @@ document.cookie = 'alert = 6;';
                 $emergency_relation = $db_handle->checkValue($_POST['emergency_relation']);
                 $emergency_contact_no = $db_handle->checkValue($_POST['emergency_contact_no']);
                 $emergency_address = $db_handle->checkValue($_POST['emergency_address']);
-                if (empty($emergency_name) || empty($emergency_contact_no) || empty($emergency_address) || empty($emergency_relation)) {
+                if (empty($emergency_name) || empty($emergency_contact_no)) {
                     echo "<script>
 document.cookie = 'alert = 6;';
                 window.location.href='Admission';
